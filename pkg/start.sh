@@ -1,13 +1,6 @@
 #!/bin/bash
 set -eu
 
-# Allow our writing to /dev/stdout as a log device...
-# This is imperfect, but awaits a better solution.
-# See:
-# - https://github.com/inspircd/inspircd/issues/1860
-# - https://github.com/moby/moby/issues/31243
-chmod o+w /dev/stdout
-
 # Ensure this exists...
 touch /app/data/permchannels.conf
 touch /app/data/xline.db
@@ -59,6 +52,15 @@ else
     TEMPLATE_LDAP_BIND_DN="${CLOUDRON_LDAP_BIND_DN}"
     TEMPLATE_LDAP_BIND_AUTH="${CLOUDRON_LDAP_BIND_PASSWORD}"
     TEMPLATE_LDAP_USERS_BASE_DN="${CLOUDRON_LDAP_USERS_BASE_DN}"
+
+    # Allow our writing to /dev/stdout as a log device...
+    # This is imperfect, but awaits a better solution.
+    # See:
+    # - https://github.com/inspircd/inspircd/issues/1860
+    # - https://github.com/moby/moby/issues/31243
+    # For whatever reason, this doesn't seem to be a problem when running under podman,
+    # so I'll leave it in the Cloudron-only branch.
+    chmod o+w /dev/stdout
 fi
 
 # NB: BELOW THIS POINT, no modifying /run/inspircd please.
