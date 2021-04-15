@@ -31,11 +31,11 @@ if [[ "$mode" == "local" ]]; then
     podman run --net=host "$IMG_TAG"
 else
     # for remote use
-    if [ -z ${1+x} ]; then
+    if [ -z ${2+x} ]; then
         echo "Server name to deploy to required."
         exit 1
     else
-        SERVER_NAME="$1"
+        SERVER_NAME="$2"
     fi
 
     podman push "$IMG_TAG"
