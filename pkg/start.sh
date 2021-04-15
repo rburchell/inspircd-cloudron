@@ -1,6 +1,13 @@
 #!/bin/bash
 set -eu
 
+# Allow our writing to /dev/stdout as a log device...
+# This is imperfect, but awaits a better solution.
+# See:
+# - https://github.com/inspircd/inspircd/issues/1860
+# - https://github.com/moby/moby/issues/31243
+chmod o+w /dev/stdout
+
 # Ensure this exists...
 touch /app/data/permchannels.conf
 touch /app/data/xline.db
