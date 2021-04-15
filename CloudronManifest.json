@@ -1,7 +1,7 @@
 {
   "id": "net.viroteck.inspircd",
   "title": "InspIRCd",
-  "version": "0.1.0",
+  "version": "3.9.0",
   "healthCheckPath": "/",
   "httpPort": 3000,
   "addons": {

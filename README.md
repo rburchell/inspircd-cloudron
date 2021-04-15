@@ -1,7 +1,5 @@
 # FIXME
 
-* Include sha256 for Dockerfile FROM
-* Update version in manfest to match packaged version
 * Better healthchecker: actually try to ensure that the ircd is up/responding periodically?
 * LDAP not really working... why?
 * Vet & rethink default modules some more...
