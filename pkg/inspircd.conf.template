@@ -4,7 +4,7 @@
 <server name="TEMPLATE_SERVER_NAME" description="TEMPLATE_SERVER_DESCRIPTION" network="TEMPLATE_SERVER_NETWORK">
 <admin name="TEMPLATE_ADMIN_NAME" nick="TEMPLATE_ADMIN_NICK" email="TEMPLATE_ADMIN_EMAIL">
 
-<log method="file" type="*" level="rawio" target="/dev/stdout">
+<log method="file" type="*" level="debug" target="/dev/stdout">
 
 # cert locations:
 # The cert and key are made available (as readonly) in /etc/certs/tls_cert.pem and /etc/certs/tls_key.pem respectively. The app will be automatically restarted when the cert is renewed.
