@@ -109,5 +109,8 @@ sed -i'' "s/TEMPLATE_LDAP_USERS_BASE_DN/${TEMPLATE_LDAP_USERS_BASE_DN//\//\\/}/g
 echo "Configuration after templating:"
 cat $CONFIG_FILE_PATH
 
+echo "==> Starting healthchecker"
+/usr/local/bin/gosu cloudron:cloudron "$(which php)" -S 0.0.0.0:3000 /app/pkg/healthcheck.php &
+
 echo "==> Starting inspircd"
 exec /usr/local/bin/gosu cloudron:cloudron inspircd --nofork --config "$CONFIG_FILE_PATH"

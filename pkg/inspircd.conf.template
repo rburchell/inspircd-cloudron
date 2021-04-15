@@ -35,9 +35,6 @@
       ssl="Default"
       type="servers">
 
-<module name="httpd">
-<bind port="3000" type="httpd" sslprofile="Default">
-
 <module name="ldap">
 <database module="ldap" id="ldapdb"
    server="TEMPLATE_LDAP_SERVER"

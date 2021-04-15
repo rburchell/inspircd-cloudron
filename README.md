@@ -2,9 +2,7 @@
 
 * Include sha256 for Dockerfile FROM
 * Update version in manfest to match packaged version
-* Healthcheck won't work, since it requires a 200 code.
-  Remove m_httpd, and somehow set up a dummy web instance that checks TCP state?
-  And maybe request some feature improvements @ Cloudron to help this.
+* Better healthchecker: actually try to ensure that the ircd is up/responding periodically?
 * LDAP not really working... why?
 * Vet & rethink default modules some more...
 * Improve logging: https://github.com/inspircd/inspircd/issues/1860
