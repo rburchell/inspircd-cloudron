@@ -7,7 +7,7 @@
   And maybe request some feature improvements @ Cloudron to help this.
 * LDAP not really working... why?
 * Vet & rethink default modules some more...
-* Ask upstream for a 'console' log method? inspircd.log sucks.
+* Improve logging: https://github.com/inspircd/inspircd/issues/1860
 * Consider using conf templating variables rather than doing it using shell script?
 * In start.sh, if an existing config exists in /app/data/, copy from it, rather than the templated one.
   (do a copy, so that we can do the variable replacements...)
