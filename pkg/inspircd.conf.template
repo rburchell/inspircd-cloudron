@@ -1,0 +1,189 @@
+<pid file="/run/inspircd/inspircd.pid">
+
+# Cloudron-specific bits start now...
+<server name="TEMPLATE_SERVER_NAME" description="TEMPLATE_SERVER_DESCRIPTION" network="TEMPLATE_SERVER_NETWORK">
+<admin name="TEMPLATE_ADMIN_NAME" nick="TEMPLATE_ADMIN_NICK" email="TEMPLATE_ADMIN_EMAIL">
+
+<log method="file" type="*" level="rawio" target="/run/inspircd/inspircd.log">
+
+# cert locations:
+# The cert and key are made available (as readonly) in /etc/certs/tls_cert.pem and /etc/certs/tls_key.pem respectively. The app will be automatically restarted when the cert is renewed.
+<module name="ssl_gnutls">
+<sslprofile name="Default"
+            provider="gnutls"
+            cafile=""
+            certfile="TEMPLATE_SSL_CERTIFICATE_PATH/tls_cert.pem"
+            crlfile=""
+            dhfile="/run/inspircd/dhparams.pem"
+            hash="sha256"
+            keyfile="TEMPLATE_SSL_CERTIFICATE_PATH/tls_key.pem"
+            mindhbits="1024"
+            outrecsize="2048"
+            priority="SECURE192"
+            requestclientcert="yes"
+            strictpriority="no">
+
+<bind address="*"
+      port="6697"
+
+      ssl="Default"
+      type="clients">
+
+<bind address="*"
+      port="7000"
+
+      ssl="Default"
+      type="servers">
+
+<module name="httpd">
+<bind port="3000" type="httpd" sslprofile="Default">
+
+<module name="ldap">
+<database module="ldap" id="ldapdb"
+   server="TEMPLATE_LDAP_SERVER"
+   binddn="TEMPLATE_LDAP_BIND_DN"
+   bindauth="TEMPLATE_LDAP_BIND_AUTH"
+   searchscope="onelevel">
+
+<module name="ldapauth">
+<ldapauth dbid="ldapdb"
+           baserdn="TEMPLATE_LDAP_USERS_BASE_DN"
+           attribute="username"
+           #allowpattern="Guest* Bot*"
+           killreason="Provided username or password was invalid"
+           verbose="yes"
+           host="$username.$ou.inspircd.org"
+           useusername="yes">
+
+# This is just for local testing, should be harmless anyway.
+<ldapwhitelist cidr="127.0.0.1/24">
+
+# TODO: ldapoper too?
+
+
+<module name="md5">
+<module name="sha256">
+<module name="allowinvite">
+<module name="alltime">
+<module name="anticaps">
+<module name="auditorium">
+<module name="autoop">
+<module name="banexception">
+<module name="banredirect">
+<module name="bcrypt">
+<module name="blockcolor">
+<module name="botmode">
+<module name="callerid">
+<module name="cap">
+<module name="cban">
+<module name="chancreate">
+<module name="chanfilter">
+<module name="chanhistory">
+
+<chanhistory bots="yes"
+             enableumode="yes"
+             maxlines="50"
+             prefixmsg="yes">
+
+<module name="channelban">
+<module name="check">
+<module name="chghost">
+<module name="chgident">
+<module name="chgname">
+<module name="classban">
+<module name="clearchan">
+<module name="clones">
+<module name="commonchans">
+<module name="conn_join">
+<autojoin channel="#general">
+<module name="cycle">
+
+<module name="connectban">
+<connectban threshold="100" duration="10m" ipv4cidr="32" ipv6cidr="128" banmessage="Your IP range has been attempting to connect too many times in too short a duration. Wait a while, and you will be able to connect.">
+
+<module name="deaf">
+<module name="delayjoin">
+<module name="delaymsg">
+<module name="gecosban">
+<module name="globops">
+<module name="hostcycle">
+<module name="inviteexception">
+<module name="ircv3">
+<module name="ircv3_accounttag">
+<module name="ircv3_batch">
+<module name="ircv3_capnotify">
+<module name="ircv3_chghost">
+<module name="ircv3_ctctags">
+<module name="ircv3_echomessage">
+<module name="ircv3_invitenotify">
+<module name="ircv3_labeledresponse">
+<module name="ircv3_msgid">
+<module name="ircv3_servertime">
+#<module name="ircv3_sts">
+<module name="kicknorejoin">
+<module name="knock">
+<module name="messageflood">
+<module name="mlock">
+<module name="modenotice">
+<module name="monitor">
+<module name="namedmodes">
+<module name="namesx">
+<module name="nickflood">
+<module name="noctcp">
+<module name="nokicks">
+<module name="nonicks">
+<module name="nopartmsg">
+<module name="nonotice">
+<module name="ojoin">
+<module name="operchans">
+<module name="operlog">
+<module name="password_hash">
+
+<module name="permchannels">
+
+<permchanneldb filename="/app/data/permchannels.conf"
+               listmodes="yes"
+               saveperiod="5s">
+<include file="/app/data/permchannels.conf" missingokay="yes">
+
+<module name="muteban">
+<module name="redirect">
+<module name="regex_glob">
+<module name="regex_pcre">
+<module name="remove">
+<module name="repeat">
+<module name="rline">
+<module name="rmode">
+<module name="sajoin">
+<module name="sakick">
+<module name="samode">
+<module name="sanick">
+<module name="sapart">
+<module name="saquit">
+<module name="satopic">
+<module name="servprotect">
+<module name="seenicks">
+<module name="setidle">
+<module name="services_account">
+<module name="sethost">
+<module name="setident">
+<module name="setname">
+<module name="serverban">
+<module name="sslinfo">
+<module name="stripcolor">
+<module name="silence">
+<module name="svshold">
+<module name="swhois">
+<module name="timedbans">
+<module name="tline">
+<module name="topiclock">
+<module name="uhnames">
+<module name="uninvite">
+<module name="userip">
+<module name="vhost">
+<module name="watch">
+<module name="xline_db">
+<xlinedb filename="/app/data/xline.db" saveperiod="5s">
+
+#<module name="chanlog">
+#<chanlog snomasks="AoCc" channel="#inspircd-log">

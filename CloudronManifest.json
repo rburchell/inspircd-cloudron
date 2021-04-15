@@ -1,0 +1,21 @@
+{
+  "id": "net.viroteck.inspircd",
+  "title": "InspIRCd",
+  "version": "0.1.0",
+  "healthCheckPath": "/",
+  "httpPort": 3000,
+  "addons": {
+    "localstorage": {},
+    "ldap": {},
+    "tls": {}
+  },
+  "tcpPorts": {
+    "IRC_PORT": {
+      "title": "IRC Port",
+      "description": "IRC Port for connections. Uses SSL.",
+      "defaultValue": 6697,
+      "containerPort": 6697
+    }
+  },
+ "manifestVersion": 2
+}
