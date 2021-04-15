@@ -17,5 +17,6 @@
       "containerPort": 6697
     }
   },
- "manifestVersion": 2
+  "icon": "file://inspircd.png",
+  "manifestVersion": 2
 }
