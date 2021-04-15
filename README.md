@@ -1,5 +1,6 @@
 # FIXME
 
+* Verify downloaded debian package hash at build time
 * Better healthchecker: actually try to ensure that the ircd is up/responding periodically?
 * LDAP not really working... why?
 * Vet & rethink default modules some more...
